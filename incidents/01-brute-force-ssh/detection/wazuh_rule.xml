@@ -1,0 +1,49 @@
+<!-- Wazuh Custom Rules for SSH Brute Force Detection -->
+<!-- Place in /var/ossec/etc/rules/local_rules.xml on Wazuh manager -->
+
+<group name="syslog,sshd,authentication_failed,">
+
+  <!-- Rule 1: Single failed SSH login -->
+  <rule id="100001" level="5">
+    <if_sid>5760</if_sid>
+    <description>SSH authentication failed</description>
+    <mitre>
+      <id>T1110.001</id>
+    </mitre>
+    <group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,gpg13_7.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+  </rule>
+
+  <!-- Rule 2: Brute force threshold — 10 failures in 60s -->
+  <rule id="100002" level="10" frequency="10" timeframe="60">
+    <if_matched_sid>100001</if_matched_sid>
+    <same_source_ip />
+    <description>SSH brute force attack in progress from $(srcip)</description>
+    <mitre>
+      <id>T1110.001</id>
+    </mitre>
+    <group>authentication_failures,pci_dss_11.4,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_SI.4,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+  </rule>
+
+  <!-- Rule 3: Successful login after brute force (critical) -->
+  <rule id="100003" level="15">
+    <if_matched_sid>100002</if_matched_sid>
+    <if_sid>5715</if_sid>
+    <same_source_ip />
+    <description>CRITICAL: Successful SSH login after brute force from $(srcip) — user: $(dstuser)</description>
+    <mitre>
+      <id>T1110.001</id>
+      <id>T1021.004</id>
+    </mitre>
+    <group>authentication_success,pci_dss_10.2.5,</group>
+  </rule>
+
+  <!-- Rule 4: New user created (persistence) -->
+  <rule id="100004" level="12">
+    <if_sid>5902</if_sid>
+    <description>New user account created: $(dstuser) — possible attacker persistence</description>
+    <mitre>
+      <id>T1136.001</id>
+    </mitre>
+  </rule>
+
+</group>

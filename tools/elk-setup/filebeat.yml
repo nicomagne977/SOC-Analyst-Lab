@@ -1,0 +1,34 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/auth.log
+      - /var/log/syslog
+    fields:
+      log_type: auth
+    fields_under_root: true
+
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/*.log
+    exclude_files: ['\.gz$']
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+filebeat.modules:
+  - module: system
+    syslog:
+      enabled: true
+    auth:
+      enabled: true
+
+output.logstash:
+  hosts: ["172.16.0.1:5044"]
+
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - add_cloud_metadata: ~

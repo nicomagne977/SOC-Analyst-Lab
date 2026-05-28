@@ -1,0 +1,29 @@
+# VMs and disk images
+*.vmdk
+*.vdi
+*.ova
+*.iso
+
+# Captured network traffic (can be large)
+*.pcap
+*.pcapng
+*.cap
+
+# Docker volumes
+esdata/
+
+# Credentials (never commit these)
+.env
+secrets/
+credentials/
+*.key
+*.pem
+
+# Tool outputs with real IPs
+/tmp/
+hydra_results.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
