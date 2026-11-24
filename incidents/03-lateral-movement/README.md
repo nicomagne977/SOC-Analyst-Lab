@@ -1,5 +1,16 @@
 # Incident 03 — Lateral Movement + Privilege Escalation
 
+| | |
+|---|---|
+| **Status** | 🚧 In progress |
+| **MITRE ATT&CK** | [T1046](https://attack.mitre.org/techniques/T1046/), [T1018](https://attack.mitre.org/techniques/T1018/), [T1021.004](https://attack.mitre.org/techniques/T1021/004/), [T1548.003](https://attack.mitre.org/techniques/T1548/003/), [T1003](https://attack.mitre.org/techniques/T1003/) |
+| **Severity** | Critical — root on a second host + credential dump |
+| **Difficulty** | Advanced |
+| **Estimated duration** | ~3 h |
+| **Missing** | Reproduction script (`attack/`), sample logs (`logs/`), detection rule (Wazuh/Elastic), queries in `detection/kibana_queries.md` (currently inline below), NIST incident report (`report/incident_report.md`). |
+
+> Checklist: [definition of done](../../notes/scenario-definition-of-done.md)
+
 ## Scenario Overview
 
 After gaining initial access on a low-privilege user account (from Incident 01 or 02), the attacker pivots through the internal network. They discover a second host, exploit a misconfigured sudo rule, escalate to root, and dump credentials from memory.
