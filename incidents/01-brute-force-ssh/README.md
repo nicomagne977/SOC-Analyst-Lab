@@ -1,5 +1,16 @@
 # Incident 01 — SSH Brute Force + Unauthorized Access
 
+| | |
+|---|---|
+| **Status** | ✅ Complete |
+| **MITRE ATT&CK** | [T1110.001](https://attack.mitre.org/techniques/T1110/001/), [T1021.004](https://attack.mitre.org/techniques/T1021/004/), [T1136.001](https://attack.mitre.org/techniques/T1136/001/), [T1082](https://attack.mitre.org/techniques/T1082/) |
+| **Severity** | High — valid account compromised + backdoor account created |
+| **Difficulty** | Beginner |
+| **Estimated duration** | ~1 h |
+| **Missing** | `detection/elastic_rule.ndjson` is referenced below but not committed yet (Wazuh rule and KQL queries are). |
+
+> Checklist: [definition of done](../../notes/scenario-definition-of-done.md)
+
 ## Scenario Overview
 
 An attacker discovers an internet-facing SSH server and launches an automated brute-force attack using a common password list. After several hundred failed attempts, the attacker successfully authenticates using a weak credential. They then establish persistence and begin internal reconnaissance.

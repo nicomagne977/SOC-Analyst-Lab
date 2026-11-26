@@ -2,6 +2,16 @@
 
 A hands-on home lab simulating real-world security incidents to develop SOC analyst skills. Built progressively from simple to advanced scenarios.
 
+## Scenarios
+
+| # | Scenario | MITRE ATT&CK | Detection tools | Artifacts | Status |
+|---|----------|--------------|-----------------|-----------|--------|
+| [01](incidents/01-brute-force-ssh/) | SSH Brute Force + Unauthorized Access<br>*Beginner* | [T1110.001](https://attack.mitre.org/techniques/T1110/001/), [T1021.004](https://attack.mitre.org/techniques/T1021/004/), [T1136.001](https://attack.mitre.org/techniques/T1136/001/), [T1082](https://attack.mitre.org/techniques/T1082/) | Wazuh, Kibana (KQL) | ✅ attack · ✅ logs · ✅ Wazuh rule · ✅ queries · ✅ report | ✅ Complete |
+| [02](incidents/02-phishing-malware/) | Phishing Email + Malware Execution<br>*Intermediate* | [T1566.001](https://attack.mitre.org/techniques/T1566/001/), [T1059.001](https://attack.mitre.org/techniques/T1059/001/), [T1036](https://attack.mitre.org/techniques/T1036/), [T1071.001](https://attack.mitre.org/techniques/T1071/001/), [T1041](https://attack.mitre.org/techniques/T1041/) | Kibana (KQL), Wireshark | 🟡 attack (inline in README) · ✅ logs · ❌ rule · ✅ queries · ❌ report | 🚧 In progress |
+| [03](incidents/03-lateral-movement/) | Lateral Movement + Privilege Escalation<br>*Advanced* | [T1046](https://attack.mitre.org/techniques/T1046/), [T1018](https://attack.mitre.org/techniques/T1018/), [T1021.004](https://attack.mitre.org/techniques/T1021/004/), [T1548.003](https://attack.mitre.org/techniques/T1548/003/), [T1003](https://attack.mitre.org/techniques/T1003/) | Kibana (KQL) | 🟡 attack (inline in README) · ❌ logs · ❌ rule · 🟡 queries (inline in README) · ❌ report | 🚧 In progress |
+
+**Legend** — ✅ Complete: attack reproduction + logs + detection rule + investigation queries + NIST incident report · 🚧 In progress: some artifacts still missing (✅ present · 🟡 partial · ❌ missing). Technique IDs link to [attack.mitre.org](https://attack.mitre.org/). Definition of done: [notes/scenario-definition-of-done.md](notes/scenario-definition-of-done.md).
+
 ## Objectives
 
 - Build a functional Security Operations Center (SOC) environment at home
@@ -37,14 +47,6 @@ A hands-on home lab simulating real-world security incidents to develop SOC anal
 | Wireshark / Zeek | Network traffic capture and analysis |
 | Kali Linux | Attacker machine |
 | VirtualBox / VMware | Hypervisor for VMs |
-
-## Incident Scenarios
-
-| # | Scenario | Difficulty | MITRE ATT&CK |
-|---|----------|------------|--------------|
-| [01](incidents/01-brute-force-ssh/) | SSH Brute Force + Unauthorized Access | Beginner | T1110.001, T1021.004 |
-| [02](incidents/02-phishing-malware/) | Phishing Email + Malware Execution | Intermediate | T1566.001, T1059.001 |
-| [03](incidents/03-lateral-movement/) | Lateral Movement + Privilege Escalation | Advanced | T1021, T1548.003 |
 
 ## Quick Start
 
